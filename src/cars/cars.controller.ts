@@ -9,39 +9,40 @@ import {
   Post,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
-// import { ICar } from './interfaces/car.interface';
+import { CreateCarDto, UpdateCarDto } from './dto/';
 
 @Controller('cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
   @Get()
   getAllCars() {
-    try {
-      return this.carsService.findAll();
-    } catch (error) {}
+    return this.carsService.findAll();
   }
 
   @Get(':id')
   getCar(@Param('id', ParseUUIDPipe) id: string) {
-    try {
-      return this.carsService.findOneById(id);
-    } catch (error) {
-      return 'NOT FOUND';
-    }
+    return this.carsService.findOneById(id);
   }
 
   @Post()
-  createCar(@Body() payload: any) {
-    return payload;
+  createCar(@Body() payload: CreateCarDto) {
+    console.log(payload);
+
+    const cars = this.carsService.create(payload);
+    return cars;
   }
 
   @Patch(':id')
-  updateCar(@Param() id: string, @Body() payload: any) {
-    return payload;
+  updateCar(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() payload: UpdateCarDto,
+  ) {
+    const cars = this.carsService.update(id, payload);
+    return cars;
   }
 
   @Delete(':id')
-  deleteCar(@Param() id: string) {
-    return '';
+  deleteCar(@Param('id', ParseUUIDPipe) id: string) {
+    return this.carsService.delete(id);
   }
 }

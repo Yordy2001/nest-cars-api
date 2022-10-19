@@ -48,7 +48,7 @@ export class BrandsService {
         return brandDB;
       }
     });
-    return `This action updates a #${id} brand`;
+    return brandDB;
   }
 
   remove(id: string) {

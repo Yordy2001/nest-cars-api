@@ -55,4 +55,8 @@ export class BrandsService {
     this.brands = this.brands.filter((brand) => brand.id != id);
     return `This action removes a #${id} brand`;
   }
+
+  fiilBrandsWithData(brands: Brand[]) {
+    this.brands = this.brands;
+  }
 }

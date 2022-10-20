@@ -39,10 +39,17 @@ $ npm install
 $ npm run start
 
 # watch mode
-$ npm run start:dev
+$ npm run dev
 
 # production mode
 $ npm run start:prod
+```
+
+## Cars DealerShip
+
+populate DB
+```
+http://localhost:3000/seed
 ```
 
 ## Test
